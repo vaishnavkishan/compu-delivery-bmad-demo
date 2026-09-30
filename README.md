@@ -54,6 +54,7 @@ graph LR
 ```
 
 See [Choose a planning path](https://docs.bmad-method.org/plan/choose-a-planning-path/#get-to-a-well-defined-intent).
+
 ## Prerequisites
 
 Install BMAD into the repo:
@@ -75,3 +76,18 @@ Agents are invoked as slash commands in Claude Code: `/bmad-prd`, `/bmad-archite
 ```
 /bmad-help
 ```
+
+## Steps
+
+> Commands below are run as slash commands in Claude Code (VS Code chat or the terminal).
+
+### 1. Forge the idea (`/bmad-forge-idea`, branch 01-bmad-forge-idea)
+
+Pressure-tests the rough idea through persona-driven interrogation until it hardens. Writes `forged-idea.md` (locked decisions, rejections, open assumptions), `forge-report.html`, and a `.memlog.md` decision trail to `_bmad-output/forge/bulk-hardware-order-system/`.
+
+```
+/bmad-forge-idea Requirements:
+We need a system that accepts bulk hardware orders from enterprise clients, calculates their final net totals using pre-negotiated contract discounts, and tracks each order through its lifecycle from intake to final delivery. Clients should be able to view their order history or cancel active requests.
+```
+
+The session goal was to test whether the idea holds up (greenfield project). It ended **HARDENED**: flat per-client discount, ERP mock as read-only reference data, six lifecycle states, cancel only in `INTAKE`/`BACKORDERED`, and three dropdown personas with no auth.
