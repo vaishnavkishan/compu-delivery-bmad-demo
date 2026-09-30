@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Forge Report: Bulk Hardware Order System</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root { --ink:#1f2430; --muted:#5d6475; --paper:#faf7f0; --card:#ffffff; --line:#e4dfd2; --wax:#9b1c1c; --wax2:#c0392b; --ok:#2f6b3f; --warn:#8a5a00; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--paper); color:var(--ink); font:16px/1.55 Georgia, "Times New Roman", serif; }
+  .wrap { max-width:920px; margin:0 auto; padding:40px 24px 80px; }
+  header { display:flex; gap:28px; align-items:center; border-bottom:2px solid var(--ink); padding-bottom:24px; margin-bottom:28px; }
+  header h1 { margin:0 0 6px; font-size:30px; line-height:1.15; }
+  header p { margin:0; color:var(--muted); font-family:system-ui, sans-serif; font-size:14px; }
+  .seal { flex:0 0 auto; transform:rotate(-8deg); filter:drop-shadow(0 2px 2px rgba(0,0,0,.25)); }
+  h2 { font-size:19px; margin:34px 0 10px; letter-spacing:.02em; text-transform:uppercase; font-family:system-ui, sans-serif; border-left:5px solid var(--wax); padding-left:10px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin:10px 0; }
+  ul { margin:6px 0; padding-left:22px; }
+  li { margin:5px 0; }
+  .tag { font:600 11px system-ui, sans-serif; letter-spacing:.06em; text-transform:uppercase; padding:2px 7px; border-radius:10px; background:#eee; color:var(--muted); margin-right:6px; }
+  .tag.lock { background:#e3f1e6; color:var(--ok); }
+  .tag.weak { background:#fbeccb; color:var(--warn); }
+  .tag.rej { background:#f6dcdc; color:var(--wax); }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(270px,1fr)); gap:12px; }
+  .voice { background:var(--card); border:1px solid var(--line); border-radius:8px; padding:12px 14px; font-family:system-ui, sans-serif; font-size:14px; }
+  .voice b { font-size:15px; }
+  .voice .role { color:var(--muted); font-size:12px; display:block; margin-bottom:4px; }
+  .voice.gen { border-style:dashed; }
+  code { background:#f0ece1; padding:1px 5px; border-radius:4px; font-size:14px; }
+  .flow { font-family:ui-monospace, Menlo, monospace; font-size:14px; background:#f0ece1; padding:10px 14px; border-radius:6px; overflow-x:auto; }
+  footer { margin-top:40px; color:var(--muted); font:13px system-ui, sans-serif; border-top:1px solid var(--line); padding-top:14px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <svg class="seal" width="132" height="132" viewBox="0 0 132 132" role="img" aria-label="HARDENED wax seal">
+    <defs>
+      <radialGradient id="wax" cx="40%" cy="35%" r="75%">
+        <stop offset="0" stop-color="#c0392b"/><stop offset="1" stop-color="#7a1414"/>
+      </radialGradient>
+      <path id="arcTop" d="M 26 66 A 40 40 0 0 1 106 66"/>
+      <path id="arcBot" d="M 22 70 A 44 44 0 0 0 110 70"/>
+    </defs>
+    <path fill="url(#wax)" d="M66 4l9 6 11-2 7 9 11 1 4 10 10 5-1 11 7 9-5 10 3 11-9 7-2 11-11 3-6 10-11-1-9 7-9-7-11 1-6-10-11-3-2-11-9-7 3-11-5-10 7-9-1-11 10-5 4-10 11-1 7-9 11 2z"/>
+    <circle cx="66" cy="66" r="47" fill="none" stroke="#e9b8b0" stroke-width="2" opacity=".8"/>
+    <circle cx="66" cy="66" r="40" fill="none" stroke="#e9b8b0" stroke-width="1" opacity=".6"/>
+    <text font-family="Georgia, serif" font-size="9.5" fill="#f3d4cf" letter-spacing="2.5"><textPath href="#arcTop" startOffset="50%" text-anchor="middle">FORGED IDEA</textPath></text>
+    <text x="66" y="72" text-anchor="middle" font-family="Georgia, serif" font-weight="bold" font-size="17" fill="#fbe6e2" letter-spacing="1.2">HARDENED</text>
+    <text font-family="Georgia, serif" font-size="8.5" fill="#f3d4cf" letter-spacing="2"><textPath href="#arcBot" startOffset="50%" text-anchor="middle">2026-09-30</textPath></text>
+    <path d="M50 84 l10 10 22-24" fill="none" stroke="#fbe6e2" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" opacity=".9"/>
+  </svg>
+  <div>
+    <h1>Bulk Hardware Order System</h1>
+    <p>Forge report &middot; session goal: <b>test whether the idea holds up</b> &middot; greenfield demo project &middot; 13 questions</p>
+  </div>
+</header>
+
+<h2>Outcome</h2>
+<div class="card">
+  <p><b>Hardened.</b> The idea holds up as a demo-scoped system. Enterprise clients place bulk hardware orders, prices come from ERP reference data, the system owns the order lifecycle, and clients can view history and cancel orders while it is still safe.</p>
+  <p>The test forced several changes to the original brief. "Net total" became <i>payable total</i>. A fuzzy "active request" became an explicit cancel rule. A single actor became three personas. "Bulk" turned out to be descriptive, not a pricing rule. The pitch that "this is a thin layer over an ERP" was not refuted. It was scoped out for the demo.</p>
+</div>
+
+<h2>Locked decisions</h2>
+<div class="card">
+  <span class="tag lock">Lock</span><b>Pricing.</b>
+  <div class="flow">payable total = (&Sigma; ERP MRP &times; qty, tax-inclusive) &times; (1 &minus; client flat discount %), rounded once on the total, + shipping unless waived</div>
+  <ul>
+    <li>No tax split. This system issues an order confirmation, not a tax invoice; billing stays in the ERP.</li>
+    <li>Price snapshot (MRP per line, discount %, shipping, payable total) is frozen when the order is created.</li>
+  </ul>
+</div>
+<div class="card">
+  <span class="tag lock">Lock</span><b>Ownership.</b> This system owns the order record and lifecycle. The ERP mock is read-only reference data: catalog and MRP, flat discount, active-contract flag, per-order shipping quote, waiver flag. It has a "simulate unavailable" switch.
+</div>
+<div class="card">
+  <span class="tag lock">Lock</span><b>Intake.</b>
+  <ul>
+    <li>Quantity is a whole number from 1 to 10,000 per line. An order has 1 to 100 lines. Every SKU exists in the ERP, there are no duplicate SKUs, and the client has an active contract.</li>
+    <li>Any failure, including ERP unavailable (retryable error), refuses the order and creates nothing.</li>
+    <li>One order is one destination and one shipment. There are no partial shipments.</li>
+  </ul>
+</div>
+<div class="card">
+  <span class="tag lock">Lock</span><b>Lifecycle.</b>
+  <div class="flow">INTAKE &rarr; PROCESSING &rarr; SHIPPED &rarr; FINAL_DELIVERY<br>PROCESSING &#8644; BACKORDERED (whole order waits)<br>CANCELLED (client, only from INTAKE or BACKORDERED)</div>
+  <ul><li>Cancel check and status write are atomic, so a client cancel cannot race a staff transition. No cancellation reason is captured.</li></ul>
+</div>
+<div class="card">
+  <span class="tag lock">Lock</span><b>Personas</b> (dropdown, no auth)
+  <ul>
+    <li><b>Enterprise User:</b> picks a client from a seeded list, then places, views and cancels orders for that client only. Sees only its own discount.</li>
+    <li><b>Warehouse Operator:</b> sees all clients, performs forward transitions and BACKORDERED, cannot cancel or edit.</li>
+    <li><b>Invoice Employee:</b> read-only view of delivered orders with their price snapshot.</li>
+  </ul>
+</div>
+<div class="card">
+  <span class="tag lock">Lock</span><b>History.</b> A paginated list of the client's orders in all states, newest first, no filters. Each order has an append-only, timestamped status timeline (transition, time, persona).
+</div>
+
+<h2>Rejected, and why</h2>
+<div class="card">
+  <ul>
+    <li><span class="tag rej">Rejected</span>Tiers, per-SKU rates, rebates. The contracts use one flat percentage.</li>
+    <li><span class="tag rej">Rejected</span>Authoring contracts here. Terms come from the ERP.</li>
+    <li><span class="tag rej">Rejected</span>Computing shipping here, or a flat-fee config. The ERP quote is the only source.</li>
+    <li><span class="tag rej">Rejected</span>Multi-address orders and partial shipments. They break the one-status, one-quote model.</li>
+    <li><span class="tag rej">Rejected</span>Separate CONFIRMED and REJECTED states. Refusing at intake is simpler.</li>
+    <li><span class="tag rej">Rejected</span>Cancelling in PROCESSING, or cancel-as-request. Too costly for a demo; picking has begun.</li>
+    <li><span class="tag rej">Rejected</span>Per-user roles inside a client, real authentication, a "billed" flag for Invoice Employee.</li>
+    <li><span class="tag rej">Rejected</span>Size-based pricing thresholds. "Bulk" is descriptive; the only size rule is the 100-line cap.</li>
+  </ul>
+</div>
+
+<h2>Weak points that survived</h2>
+<div class="card">
+  <ul>
+    <li><span class="tag weak">Open</span><b>"Why not the ERP's own client portal?"</b> Greg and Splinter raised it. It was scoped out for the demo, not answered.</li>
+    <li><span class="tag weak">Open</span><b>Tax correctness is unchecked.</b> Discounting a tax-inclusive price is fine for a confirmation, but nobody verified it against any tax rules, so the demo must not be presented as a tax document.</li>
+    <li><span class="tag weak">Open</span><b>Real ERP shape is unknown.</b> A mock friendlier than the real ERP (effective dates, inconsistent rate formats) will cause rework.</li>
+    <li><span class="tag weak">Assumed</span>The shipping quote is frozen at intake. This was never confirmed.</li>
+    <li><span class="tag weak">Accepted</span>The dropdown "identity" is not a security boundary. A client-isolation bug would be invisible in the demo.</li>
+    <li><span class="tag weak">Accepted</span>PROCESSING cannot be cancelled by the client. A client who double-submits and is too slow must call an account manager.</li>
+    <li><span class="tag weak">Accepted</span>There is no inventory. BACKORDERED is a manual call, and the delivered-to-billed handoff has no owner in the demo.</li>
+    <li><span class="tag weak">Accepted</span>FINAL_DELIVERY only means "last status". The name is slightly misleading.</li>
+  </ul>
+</div>
+
+<h2>Who pressure-tested it</h2>
+<p style="font-family:system-ui,sans-serif;font-size:13px;color:var(--muted);margin:0 0 8px">Installed and custom personas</p>
+<div class="grid">
+  <div class="voice"><b>📊 Mary</b><span class="role">Business Analyst</span>Caught the four meanings of "discount" and the partial-shipment hint in "final delivery".</div>
+  <div class="voice"><b>📋 John</b><span class="role">Product Manager</span>Asked "a percentage off <i>what</i>?" and forced the price-base question.</div>
+  <div class="voice"><b>🏗️ Winston</b><span class="role">System Architect</span>Laid out three ways to source shipping cost and their trade-offs.</div>
+  <div class="voice"><b>🎯 Yui</b><span class="role">The Craftsman</span>Challenged the unexplained Invoice Employee and the missing status timeline.</div>
+  <div class="voice"><b>🚢 Dana</b><span class="role">The Pragmatist</span>Argued that "bulk" is marketing if nothing in the math depends on it.</div>
+  <div class="voice"><b>🌶️ Boundary</b><span class="role">Edge-Case Hunter</span>Raised the cancel-versus-ship race and the quantity and duplicate-SKU cases.</div>
+  <div class="voice"><b>😤 Grumbal</b><span class="role">The Adversary</span>Pushed for an explicit cancellation rule before an incident picks one.</div>
+  <div class="voice"><b>🔒 Vex</b><span class="role">Security Engineer</span>Named the cross-client ID-swap attack and discount-rate leakage.</div>
+  <div class="voice"><b>📏 Level</b><span class="role">Claim Checker</span>Asked for evidence that discounting a tax-inclusive price is acceptable.</div>
+  <div class="voice"><b>🪵 Splinter</b><span class="role">Consensus Challenger</span>Noticed every decision moved work into the ERP and asked why build this at all.</div>
+  <div class="voice"><b>🛑 Killjoy</b><span class="role">Loop Stopper</span>Called the session to close once only defaults remained.</div>
+</div>
+<p style="font-family:system-ui,sans-serif;font-size:13px;color:var(--muted);margin:18px 0 8px">Generated outside voices</p>
+<div class="grid">
+  <div class="voice gen"><b>🧾 Dmitri Okafor</b><span class="role">Client contract-compliance auditor</span>Would dispute any invoice off by 0.3%, so the snapshot must explain every total.</div>
+  <div class="voice gen"><b>🔌 Rosa Delgado</b><span class="role">ERP integration consultant</span>Warned that mocks drift to production, so the mock must not be tidier than the real ERP.</div>
+  <div class="voice gen"><b>🧮 Anjali Mehta</b><span class="role">Client indirect-tax accountant</span>Needs tax as its own line on anything she books, hence "confirmation, not invoice".</div>
+  <div class="voice gen"><b>🚚 Tomás Reyes</b><span class="role">Client logistics coordinator</span>Raised the multi-office, multi-charge shipping question.</div>
+  <div class="voice gen"><b>🧑‍💼 Greg Halvorsen</b><span class="role">ERP vendor account executive</span>Asked why build a portal the ERP already ships.</div>
+  <div class="voice gen"><b>📦 Kwame Asante</b><span class="role">Warehouse shift lead</span>Explained why cancelling after picking starts is expensive.</div>
+  <div class="voice gen"><b>🖥️ Ingrid Solberg</b><span class="role">Client IT director</span>Needed to cancel a duplicate order, the case the cancel cutoff costs.</div>
+  <div class="voice gen"><b>🏷️ Claire Dubois</b><span class="role">Rival client's procurement lead</span>Wanted to see another client's orders and discount.</div>
+  <div class="voice gen"><b>📅 Hana Ito</b><span class="role">Client procurement manager</span>Wanted the stock that exists now, which exposed the partial-shipment conflict.</div>
+  <div class="voice gen"><b>🧾 Bashir Qureshi</b><span class="role">Supplier accounts-receivable clerk</span>Needed the price snapshot for billing and exposed the missing "billed" owner.</div>
+  <div class="voice gen"><b>📋 Lena Kowalski</b><span class="role">Supplier sales-ops manager</span>Noted that real contracts often treat "bulk" as a threshold; yours do not.</div>
+</div>
+
+<footer>
+  Memlog: <code>.memlog.md</code> &middot; Handoff: <code>forged-idea.md</code> &middot; Generated by bmad-forge-idea on 2026-09-30.
+</footer>
+</div>
+</body>
+</html>
