@@ -91,3 +91,15 @@ We need a system that accepts bulk hardware orders from enterprise clients, calc
 ```
 
 The session goal was to test whether the idea holds up (greenfield project). It ended **HARDENED**: flat per-client discount, ERP mock as read-only reference data, six lifecycle states, cancel only in `INTAKE`/`BACKORDERED`, and three dropdown personas with no auth.
+
+### 2. Write the product brief (`/bmad-product-brief`, branch 02-bmad-product-brief)
+
+Turns the forged idea into a short product brief: who it serves, scope, success criteria, and open questions. Writes `brief.md`, `addendum.md` (mockup divergences and parked features), and a `.memlog.md` decision trail to `_bmad-output/planning-artifacts/briefs/brief-compu-delivery-bmad-demo-2026-09-30/`.
+
+```
+/bmad-product-brief
+```
+
+Inputs were `forged-idea.md` from step 1 and the seven HTML mockups in `figma-designs/`. The mockups disagree with the forged idea on pricing, tiers, order editing, cancellation, and invoicing, so the brief sets one rule: **the forged idea wins**, and the mockups are layout reference only. The addendum lists each divergence so later steps don't build from the pictures.
+
+Because the demo is a tutorial repo, the brief frames the learner as the primary audience. Success is that a learner can name which BMAD step produced which artifact and can repeat the path on their own idea. Mockup-only features (asset tagging, carrier tracking, invoice ledger and payment) are parked as out of v1. The brief ended as a **draft**, with its `[ASSUMPTION]` tags left in place for review.
